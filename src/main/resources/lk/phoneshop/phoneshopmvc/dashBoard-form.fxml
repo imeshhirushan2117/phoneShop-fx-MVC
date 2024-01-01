@@ -17,7 +17,7 @@
          </font>
       </Label>
       <Separator layoutX="130.0" layoutY="25.0" prefHeight="3.0" prefWidth="401.0" style="-fx-background-color: black;" />
-      <Button layoutX="106.0" layoutY="102.0" mnemonicParsing="false" onAction="#customer" prefHeight="40.0" prefWidth="381.0" style="-fx-background-radius: 10; -fx-background-color: #16a085;" text="Customer">
+      <Button layoutX="109.0" layoutY="157.0" mnemonicParsing="false" onAction="#customer" prefHeight="40.0" prefWidth="381.0" style="-fx-background-radius: 10; -fx-background-color: #16a085;" text="Customer">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -25,7 +25,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="106.0" layoutY="169.0" mnemonicParsing="false" onAction="#phone" prefHeight="40.0" prefWidth="381.0" style="-fx-background-radius: 10; -fx-background-color: #27ae60;" text="Phone">
+      <Button layoutX="109.0" layoutY="88.0" mnemonicParsing="false" onAction="#phone" prefHeight="40.0" prefWidth="381.0" style="-fx-background-radius: 10; -fx-background-color: #27ae60;" text="Phone">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

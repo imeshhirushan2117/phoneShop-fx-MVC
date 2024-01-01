@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.phoneshop.phoneshopmvc.HelloApplication;
+import lk.phoneshop.phoneshopmvc.module.PhoneModule;
+import lk.phoneshop.phoneshopmvc.to.Phone;
 
 import java.io.IOException;
 
@@ -21,6 +23,7 @@ import java.io.IOException;
  * Time : 3:24 PM
  */
 public class PhoneFormController {
+
     @FXML
     private AnchorPane root;
 
@@ -52,16 +55,31 @@ public class PhoneFormController {
 
     @FXML
     void deleted(ActionEvent event) {
-
+        System.out.println("deleted");
     }
 
     @FXML
     void save(ActionEvent event) {
-
+        String pid = txtPhoneId.getText();
+        String brand = txtBrand.getText();
+        String module = txtModule.getText();
+        int ram = Integer.parseInt(txtRam.getText());
+        double price = Double.parseDouble(txtPrice.getText());
+        PhoneModule.savePhone(new Phone(pid,brand,module,ram,price));
+        clear();
     }
 
     @FXML
     void update(ActionEvent event) {
-
+        System.out.println("update");
     }
+
+
+    public void clear(){
+        txtBrand.clear();
+        txtModule.clear();
+        txtRam.clear();
+        txtPrice.clear();
+    }
+
 }
