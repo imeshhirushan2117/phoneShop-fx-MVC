@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.phoneshop.phoneshopmvc.HelloApplication;
+import lk.phoneshop.phoneshopmvc.module.CustomerModule;
+import lk.phoneshop.phoneshopmvc.to.Customer;
 
 import java.io.IOException;
 
@@ -48,6 +50,9 @@ public class CustomerFormController {
     private TextField txtSalary;
 
     @FXML
+    private TextField txtSearch;
+
+    @FXML
     void back(MouseEvent event) throws IOException {
         Stage stage = (Stage) this.root.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashBoard-form.fxml"));
@@ -62,11 +67,38 @@ public class CustomerFormController {
 
     @FXML
     void save(ActionEvent event) {
+        String cusId = txtCusId.getText();
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        String nic = txtNic.getText();
+        String contact = txtContact.getText();
+        double salary = Double.parseDouble(txtSalary.getText());
+
+        CustomerModule.saveCustomer(new Customer(cusId,name,address,nic,contact,salary));
+
+
+        clear();
 
     }
 
     @FXML
     void update(ActionEvent event) {
+
+    }
+
+    @FXML
+    void search(ActionEvent event) {
+
+    }
+
+    public void clear(){
+
+        txtCusId.clear();
+        txtName.clear();
+        txtAddress.clear();
+        txtNic.clear();
+        txtContact.clear();
+        txtSalary.clear();
 
     }
 }

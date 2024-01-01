@@ -87,8 +87,6 @@ public class PhoneFormController implements Initializable {
         double price = Double.parseDouble(txtPrice.getText());
         PhoneModule.savePhone(new Phone(pid,brand,module,ram,price));
         clear();
-
-        tblPhone.refresh();
     }
 
     @FXML

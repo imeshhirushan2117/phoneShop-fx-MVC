@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="root" prefHeight="601.0" prefWidth="1001.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.phoneshop.phoneshopmvc.controller.CustomerFormController">
    <children>
       <Label layoutX="11.0" layoutY="11.0" text="Customer">
@@ -21,7 +20,7 @@
          </font>
       </Label>
       <Separator layoutX="113.0" layoutY="25.0" prefHeight="1.0" prefWidth="821.0" style="-fx-background-color: black;" />
-      <TextField fx:id="txtCusId" layoutX="45.0" layoutY="86.0" prefHeight="25.0" prefWidth="162.0" promptText="Customer Id" />
+      <TextField fx:id="txtCusId" layoutX="45.0" layoutY="140.0" prefHeight="25.0" prefWidth="162.0" promptText="Customer Id" />
       <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="951.0" layoutY="12.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/back.png" />
@@ -30,12 +29,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <TextField fx:id="txtName" layoutX="218.0" layoutY="86.0" prefHeight="25.0" prefWidth="204.0" promptText="Name" />
-      <TextField fx:id="txtAddress" layoutX="432.0" layoutY="86.0" prefHeight="25.0" prefWidth="183.0" promptText="Address" />
-      <TextField fx:id="txtNic" layoutX="625.0" layoutY="86.0" prefHeight="25.0" prefWidth="162.0" promptText="Nic" />
-      <TextField fx:id="txtContact" layoutX="798.0" layoutY="86.0" prefHeight="25.0" prefWidth="162.0" promptText="Contact" />
-      <TextField fx:id="txtSalary" layoutX="45.0" layoutY="136.0" prefHeight="25.0" prefWidth="162.0" promptText="Salaey" />
-      <Button layoutX="436.0" layoutY="178.0" mnemonicParsing="false" onAction="#save" prefHeight="35.0" prefWidth="162.0" style="-fx-background-color: #4DA34C; -fx-background-radius: 10;" text="Save" textFill="WHITE">
+      <TextField fx:id="txtName" layoutX="218.0" layoutY="140.0" prefHeight="25.0" prefWidth="204.0" promptText="Name" />
+      <TextField fx:id="txtAddress" layoutX="432.0" layoutY="140.0" prefHeight="25.0" prefWidth="183.0" promptText="Address" />
+      <TextField fx:id="txtNic" layoutX="625.0" layoutY="140.0" prefHeight="25.0" prefWidth="162.0" promptText="Nic" />
+      <TextField fx:id="txtContact" layoutX="798.0" layoutY="140.0" prefHeight="25.0" prefWidth="162.0" promptText="Contact" />
+      <TextField fx:id="txtSalary" layoutX="45.0" layoutY="190.0" prefHeight="25.0" prefWidth="162.0" promptText="Salaey" />
+      <Button layoutX="436.0" layoutY="216.0" mnemonicParsing="false" onAction="#save" prefHeight="35.0" prefWidth="162.0" style="-fx-background-color: #4DA34C; -fx-background-radius: 10;" text="Save" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -43,7 +42,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="803.0" layoutY="177.0" mnemonicParsing="false" onAction="#deleted" prefHeight="35.0" prefWidth="162.0" style="-fx-background-color: #C4302E; -fx-background-radius: 10;" text="Deleted" textFill="WHITE">
+      <Button layoutX="803.0" layoutY="215.0" mnemonicParsing="false" onAction="#deleted" prefHeight="35.0" prefWidth="162.0" style="-fx-background-color: #C4302E; -fx-background-radius: 10;" text="Deleted" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -51,7 +50,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="618.0" layoutY="177.0" mnemonicParsing="false" onAction="#update" prefHeight="35.0" prefWidth="162.0" style="-fx-background-color: #EC9E2F; -fx-background-radius: 10;" text="Update" textFill="WHITE">
+      <Button layoutX="618.0" layoutY="215.0" mnemonicParsing="false" onAction="#update" prefHeight="35.0" prefWidth="162.0" style="-fx-background-color: #EC9E2F; -fx-background-radius: 10;" text="Update" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -59,7 +58,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <TableView fx:id="tblCustomer" layoutX="43.0" layoutY="255.0" prefHeight="281.0" prefWidth="926.0">
+      <TableView fx:id="tblCustomer" layoutX="43.0" layoutY="291.0" prefHeight="281.0" prefWidth="926.0">
         <columns>
           <TableColumn prefWidth="83.0" text="Id" />
           <TableColumn prefWidth="170.0" text="Name" />
@@ -69,5 +68,14 @@
             <TableColumn prefWidth="109.0" text="Salary" />
         </columns>
       </TableView>
+      <TextField fx:id="txtSearch" layoutX="720.0" layoutY="78.0" prefHeight="25.0" prefWidth="162.0" promptText="Search Customer" />
+      <Button layoutX="889.0" layoutY="78.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="76.0" style="-fx-background-radius: 10; -fx-background-color: #2980b9;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

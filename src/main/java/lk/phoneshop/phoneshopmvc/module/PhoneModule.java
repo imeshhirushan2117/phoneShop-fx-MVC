@@ -147,7 +147,6 @@ public class PhoneModule {
         return true;
     }
 
-
     public static Phone search(String id){
         try {
             Connection connection = DBConnection.getDBConnection().getConnection();
