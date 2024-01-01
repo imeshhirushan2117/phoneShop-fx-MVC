@@ -78,7 +78,6 @@ public class PhoneModule {
         }
     }
 
-
     public static boolean deletedPhone(String id){
         try {
             Connection connection = DBConnection.getDBConnection().getConnection();
@@ -109,4 +108,44 @@ public class PhoneModule {
         }
         return true;
     }
+
+    public static boolean updatePhone(Phone phone){
+
+        try {
+            Connection connection = DBConnection.getDBConnection().getConnection();
+            PreparedStatement stm = connection.prepareStatement("UPDATE phone SET  brand=?, model=?, ram=?, price=? WHERE pid=?");
+            stm.setString(1, phone.getBrand());
+            stm.setString(2, phone.getModule());
+            stm.setInt(3, phone.getRam());
+            stm.setDouble(4, phone.getPrice());
+            stm.setString(5, phone.getId());
+
+            int executed = stm.executeUpdate();
+            System.out.println(executed);
+
+            if (executed > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Deleted");
+                alert.setContentText("Phone Updated ! ");
+                alert.show();
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Place Try Agan! ");
+                alert.show();
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return true;
+    }
+
+
 }

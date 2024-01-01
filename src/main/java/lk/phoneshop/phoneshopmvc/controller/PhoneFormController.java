@@ -87,7 +87,14 @@ public class PhoneFormController implements Initializable {
 
     @FXML
     void update(ActionEvent event) {
-        System.out.println("update");
+        String pId = txtPhoneId.getText();
+        String brand = txtBrand.getText();
+        String module = txtModule.getText();
+        int ram = Integer.parseInt(txtRam.getText());
+        double price = Double.parseDouble(txtPrice.getText());
+        PhoneModule.updatePhone(new Phone(pId,brand,module,ram,price));
+
+        clear();
     }
 
 
@@ -111,6 +118,7 @@ public class PhoneFormController implements Initializable {
     }
 
     public void clear(){
+        txtPhoneId.clear();
         txtBrand.clear();
         txtModule.clear();
         txtRam.clear();
