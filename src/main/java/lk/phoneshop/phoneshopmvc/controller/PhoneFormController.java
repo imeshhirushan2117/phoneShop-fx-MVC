@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -58,6 +59,11 @@ public class PhoneFormController implements Initializable {
     private TextField txtRam;
 
     @FXML
+    private TextField txtSearch;
+
+
+
+    @FXML
     void back(MouseEvent event) throws IOException {
         Stage stage = (Stage) this.root.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashBoard-form.fxml"));
@@ -95,6 +101,18 @@ public class PhoneFormController implements Initializable {
         PhoneModule.updatePhone(new Phone(pId,brand,module,ram,price));
 
         clear();
+    }
+
+
+    @FXML
+    void search(ActionEvent event) {
+        String pid = txtSearch.getText();
+        Phone search = PhoneModule.search(pid);
+        txtPhoneId.setText(search.getBrand());
+        txtBrand.setText(search.getBrand());
+        txtModule.setText(search.getModule());
+        txtRam.setText(String.valueOf(search.getRam()));
+        txtPrice.setText(String.valueOf(search.getPrice()));
     }
 
 

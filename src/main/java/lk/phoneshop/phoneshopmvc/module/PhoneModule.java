@@ -148,4 +148,39 @@ public class PhoneModule {
     }
 
 
+    public static Phone search(String id){
+        try {
+            Connection connection = DBConnection.getDBConnection().getConnection();
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM phone WHERE pid=?");
+            stm.setObject(1,id);
+            ResultSet resultSet = stm.executeQuery();
+
+            Phone phone = new Phone();
+            if (!resultSet.next()) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("No Id Place Try Agan! ");
+                alert.show();
+
+            } else {
+
+                do{
+                    phone.setBrand(resultSet.getString(2));
+                    phone.setModule(resultSet.getString(3));
+                    phone.setRam((resultSet.getInt(4)));
+                    phone.setPrice(resultSet.getInt(5));
+
+                }while (resultSet.next());
+            }
+            return phone;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
