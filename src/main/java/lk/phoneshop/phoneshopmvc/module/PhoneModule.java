@@ -165,6 +165,7 @@ public class PhoneModule {
             } else {
 
                 do{
+                    phone.setId(resultSet.getString(1));
                     phone.setBrand(resultSet.getString(2));
                     phone.setModule(resultSet.getString(3));
                     phone.setRam((resultSet.getInt(4)));

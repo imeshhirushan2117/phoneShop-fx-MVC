@@ -104,6 +104,15 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void search(ActionEvent event) {
+        String cusId = txtSearch.getText();
+        Customer search = CustomerModule.search(cusId);
+
+        txtCusId.setText(search.getCusId());
+        txtName.setText(search.getName());
+        txtAddress.setText(search.getAddress());
+        txtNic.setText(search.getNic());
+        txtContact.setText(search.getContact());
+        txtSalary.setText(String.valueOf(search.getSalary()));
 
     }
 

@@ -70,7 +70,7 @@ public class CustomerModule {
                 customer.setAddress(resultSet.getString(3));
                 customer.setNic(resultSet.getString(4));
                 customer.setContact(resultSet.getString(5));
-                customer.setSalary(resultSet.getDouble(5));
+                customer.setSalary(resultSet.getDouble(6));
 
                 customers.add(customer);
             }
@@ -148,7 +148,42 @@ public class CustomerModule {
         }
         return true;
     }
-    public static Customer search(Customer customer){
-        return null;
+
+
+    public static Customer search(String id){
+        try {
+            Connection connection = DBConnection.getDBConnection().getConnection();
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM customer WHERE cid=?");
+            stm.setObject(1,id);
+            ResultSet resultSet = stm.executeQuery();
+
+            Customer customer = new Customer();
+            if (!resultSet.next()) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("No Id Place Try Agan! ");
+                alert.show();
+
+            } else {
+
+                do{
+                    customer.setCusId(resultSet.getString(1));
+                    customer.setName(resultSet.getString(2));
+                    customer.setAddress(resultSet.getString(3));
+                    customer.setNic(resultSet.getString(4));
+                    customer.setContact(resultSet.getString(5));
+                    customer.setSalary(resultSet.getDouble(6));
+
+
+                }while (resultSet.next());
+            }
+            return customer;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

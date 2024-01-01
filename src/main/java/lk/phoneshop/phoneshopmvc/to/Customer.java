@@ -19,12 +19,12 @@ public class Customer {
     }
 
     public Customer(String cusId, String name, String address, String nic, String contact, double salary) {
-        this.cusId = cusId;
-        this.name = name;
-        this.address = address;
-        this.nic = nic;
-        this.contact = contact;
-        this.salary = salary;
+        this.setCusId(cusId);
+        this.setName(name);
+        this.setAddress(address);
+        this.setNic(nic);
+        this.setContact(contact);
+        this.setSalary(salary);
     }
 
     public String getCusId() {

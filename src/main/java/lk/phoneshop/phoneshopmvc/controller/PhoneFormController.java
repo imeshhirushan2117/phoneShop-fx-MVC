@@ -106,7 +106,8 @@ public class PhoneFormController implements Initializable {
     void search(ActionEvent event) {
         String pid = txtSearch.getText();
         Phone search = PhoneModule.search(pid);
-        txtPhoneId.setText(search.getBrand());
+
+        txtPhoneId.setText(search.getId());
         txtBrand.setText(search.getBrand());
         txtModule.setText(search.getModule());
         txtRam.setText(String.valueOf(search.getRam()));
