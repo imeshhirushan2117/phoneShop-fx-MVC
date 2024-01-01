@@ -1,19 +1,28 @@
 package lk.phoneshop.phoneshopmvc.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.phoneshop.phoneshopmvc.HelloApplication;
 import lk.phoneshop.phoneshopmvc.module.CustomerModule;
+import lk.phoneshop.phoneshopmvc.tm.CustomerTM;
+import lk.phoneshop.phoneshopmvc.tm.PhoneTM;
 import lk.phoneshop.phoneshopmvc.to.Customer;
+import lk.phoneshop.phoneshopmvc.to.Phone;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * Created By Imesh Hirushan
@@ -22,14 +31,14 @@ import java.io.IOException;
  * Date : Jan 1, 2024
  * Time : 10:13 AM
  */
-public class CustomerFormController {
+public class CustomerFormController implements Initializable {
 
 
     @FXML
     private AnchorPane root;
 
     @FXML
-    private TableView<?> tblCustomer;
+    private TableView<CustomerTM> tblCustomer;
 
     @FXML
     private TextField txtAddress;
@@ -62,6 +71,8 @@ public class CustomerFormController {
 
     @FXML
     void deleted(ActionEvent event) {
+        String cusId = txtCusId.getText();
+        CustomerModule.deletedCustomer(cusId);
 
     }
 
@@ -74,9 +85,7 @@ public class CustomerFormController {
         String contact = txtContact.getText();
         double salary = Double.parseDouble(txtSalary.getText());
 
-        CustomerModule.saveCustomer(new Customer(cusId,name,address,nic,contact,salary));
-
-
+        CustomerModule.saveCustomer(new Customer(cusId, name, address, nic, contact, salary));
         clear();
 
     }
@@ -91,7 +100,28 @@ public class CustomerFormController {
 
     }
 
-    public void clear(){
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tblCustomer.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("cusId"));
+        tblCustomer.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
+        tblCustomer.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
+        tblCustomer.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("nic"));
+        tblCustomer.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("contact"));
+        tblCustomer.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("salary"));
+
+        ArrayList<Customer> allCustomer = CustomerModule.getAllCustomer();
+        ArrayList<CustomerTM> tms = new ArrayList<>();
+
+        for(Customer c: allCustomer){
+            tms.add(new CustomerTM(c.getCusId(),c.getName(),c.getAddress(),c.getNic(),c.getContact(),c.getSalary()));
+        }
+
+        tblCustomer.setItems(FXCollections.observableArrayList(tms));
+
+    }
+
+    public void clear() {
 
         txtCusId.clear();
         txtName.clear();
@@ -101,4 +131,5 @@ public class CustomerFormController {
         txtSalary.clear();
 
     }
+
 }

@@ -75,7 +75,7 @@ public class PhoneFormController implements Initializable {
     void deleted(ActionEvent event) {
         String pid = txtPhoneId.getText();
         PhoneModule.deletedPhone(pid);
-        txtPhoneId.clear();
+
     }
 
     @FXML

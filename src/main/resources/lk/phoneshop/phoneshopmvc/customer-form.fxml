@@ -62,10 +62,10 @@
         <columns>
           <TableColumn prefWidth="83.0" text="Id" />
           <TableColumn prefWidth="170.0" text="Name" />
-            <TableColumn prefWidth="172.0" text="Address" />
-            <TableColumn prefWidth="217.0" text="Nic" />
-            <TableColumn prefWidth="183.0" text="Contact" />
-            <TableColumn prefWidth="109.0" text="Salary" />
+            <TableColumn prefWidth="141.0" text="Address" />
+            <TableColumn prefWidth="203.0" text="Nic" />
+            <TableColumn prefWidth="193.0" text="Contact" />
+            <TableColumn prefWidth="144.0" text="Salary" />
         </columns>
       </TableView>
       <TextField fx:id="txtSearch" layoutX="720.0" layoutY="78.0" prefHeight="25.0" prefWidth="162.0" promptText="Search Customer" />
