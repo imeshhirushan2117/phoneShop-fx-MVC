@@ -77,4 +77,36 @@ public class PhoneModule {
             throw new RuntimeException(e);
         }
     }
+
+
+    public static boolean deletedPhone(String id){
+        try {
+            Connection connection = DBConnection.getDBConnection().getConnection();
+            PreparedStatement stm = connection.prepareStatement("DELETE FROM phone WHERE pid=?");
+
+            stm.setObject(1,id);
+            int executed = stm.executeUpdate();
+            System.out.println(executed);
+            if(executed == 1){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Deleted");
+                alert.setContentText("Phone Deleted ! ");
+                alert.show();
+
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Place Try Agan! ");
+                alert.show();
+            }
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
 }
