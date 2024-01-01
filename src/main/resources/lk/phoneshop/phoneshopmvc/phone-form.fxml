@@ -59,12 +59,11 @@
       </Button>
       <TableView fx:id="tblPhone" layoutX="43.0" layoutY="242.0" prefHeight="306.0" prefWidth="926.0">
          <columns>
-            <TableColumn prefWidth="83.0" text="Id" />
-            <TableColumn prefWidth="170.0" text="Name" />
-            <TableColumn prefWidth="172.0" text="Address" />
-            <TableColumn prefWidth="217.0" text="Nic" />
-            <TableColumn prefWidth="183.0" text="Contact" />
-            <TableColumn prefWidth="109.0" text="Salary" />
+            <TableColumn prefWidth="140.0" text="Id" />
+            <TableColumn prefWidth="219.0" text="Brand" />
+            <TableColumn prefWidth="240.0" text="Module" />
+            <TableColumn prefWidth="168.0" text="Ram" />
+            <TableColumn prefWidth="158.0" text="Price" />
          </columns>
       </TableView>
    </children>

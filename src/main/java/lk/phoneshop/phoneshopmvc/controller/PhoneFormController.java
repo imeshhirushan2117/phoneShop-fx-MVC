@@ -1,19 +1,26 @@
 package lk.phoneshop.phoneshopmvc.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.phoneshop.phoneshopmvc.HelloApplication;
 import lk.phoneshop.phoneshopmvc.module.PhoneModule;
+import lk.phoneshop.phoneshopmvc.tm.PhoneTM;
 import lk.phoneshop.phoneshopmvc.to.Phone;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * Created By Imesh Hirushan
@@ -22,13 +29,13 @@ import java.io.IOException;
  * Date : Jan 1, 2024
  * Time : 3:24 PM
  */
-public class PhoneFormController {
+public class PhoneFormController implements Initializable {
 
     @FXML
     private AnchorPane root;
 
     @FXML
-    private TableView<?> tblPhone;
+    private TableView<PhoneTM> tblPhone;
 
     @FXML
     private TextField txtBrand;
@@ -67,6 +74,8 @@ public class PhoneFormController {
         double price = Double.parseDouble(txtPrice.getText());
         PhoneModule.savePhone(new Phone(pid,brand,module,ram,price));
         clear();
+
+        tblPhone.refresh();
     }
 
     @FXML
@@ -75,11 +84,32 @@ public class PhoneFormController {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tblPhone.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
+        tblPhone.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("brand"));
+        tblPhone.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("module"));
+        tblPhone.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("ram"));
+        tblPhone.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("price"));
+        ArrayList<Phone> allPhone = PhoneModule.getAllPhone();
+        ArrayList<PhoneTM> tms = new ArrayList<>();
+
+        for(Phone p: allPhone){
+            tms.add(new PhoneTM(p.getId(),p.getBrand(),p.getModule(),p.getRam(),p.getPrice()));
+        }
+        tblPhone.setItems(FXCollections.observableArrayList(tms));
+
+
+
+    }
+
     public void clear(){
         txtBrand.clear();
         txtModule.clear();
         txtRam.clear();
         txtPrice.clear();
     }
+
+
 
 }

@@ -6,7 +6,9 @@ import lk.phoneshop.phoneshopmvc.to.Phone;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created By Imesh Hirushan
@@ -43,6 +45,32 @@ public class PhoneModule {
 
             return executed > 0;
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static ArrayList<Phone> getAllPhone(){
+        try {
+            Connection connection = DBConnection.getDBConnection().getConnection();
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM phone");
+            ResultSet resultSet = stm.executeQuery();
+            ArrayList<Phone> phones = new ArrayList<>();
+
+            while(resultSet.next()){
+                Phone phone = new Phone();
+                phone.setId(resultSet.getString(1));
+                phone.setBrand(resultSet.getString(2));
+                phone.setModule(resultSet.getString(3));
+                phone.setRam(resultSet.getInt(4));
+                phone.setPrice(resultSet.getDouble(5));
+
+                phones.add(phone);
+            }
+
+            return phones;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
