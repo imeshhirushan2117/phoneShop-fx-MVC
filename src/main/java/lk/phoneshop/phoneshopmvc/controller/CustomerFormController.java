@@ -92,7 +92,14 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void update(ActionEvent event) {
-
+        String cusId = txtCusId.getText();
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        String nic = txtNic.getText();
+        String contact = txtContact.getText();
+        double salary = Double.parseDouble(txtSalary.getText());
+        CustomerModule.updateCustomer(new Customer(cusId,name,address,nic,contact,salary));
+        clear();
     }
 
     @FXML

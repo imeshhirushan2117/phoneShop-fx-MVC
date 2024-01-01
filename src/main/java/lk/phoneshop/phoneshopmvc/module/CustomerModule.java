@@ -113,6 +113,39 @@ public class CustomerModule {
         }
     }
     public static boolean updateCustomer(Customer customer){
+        try {
+            Connection connection = DBConnection.getDBConnection().getConnection();
+            PreparedStatement stm = connection.prepareStatement("UPDATE customer SET  name=?, address=?, nic=?, contact=?, salary=? WHERE cid=?");
+            stm.setString(1,customer.getName());
+            stm.setString(2,customer.getAddress());
+            stm.setString(3,customer.getNic());
+            stm.setString(4,customer.getContact());
+            stm.setDouble(5,customer.getSalary());
+            stm.setString(6,customer.getCusId());
+
+            int executed = stm.executeUpdate();
+            System.out.println(executed);
+
+            if (executed > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Deleted");
+                alert.setContentText("Customer Updated ! ");
+                alert.show();
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Place Try Agan! ");
+                alert.show();
+            }
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         return true;
     }
     public static Customer search(Customer customer){
