@@ -75,6 +75,7 @@ public class PhoneFormController implements Initializable {
     void deleted(ActionEvent event) {
         String pid = txtPhoneId.getText();
         PhoneModule.deletedPhone(pid);
+        loadData();
 
     }
 
@@ -87,6 +88,7 @@ public class PhoneFormController implements Initializable {
         double price = Double.parseDouble(txtPrice.getText());
         PhoneModule.savePhone(new Phone(pid,brand,module,ram,price));
         clear();
+        loadData();
     }
 
     @FXML
@@ -99,6 +101,7 @@ public class PhoneFormController implements Initializable {
         PhoneModule.updatePhone(new Phone(pId,brand,module,ram,price));
 
         clear();
+        loadData();
     }
 
 
@@ -122,6 +125,12 @@ public class PhoneFormController implements Initializable {
         tblPhone.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("module"));
         tblPhone.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("ram"));
         tblPhone.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("price"));
+
+      loadData();
+
+    }
+
+    private void loadData() {
         ArrayList<Phone> allPhone = PhoneModule.getAllPhone();
         ArrayList<PhoneTM> tms = new ArrayList<>();
 
@@ -129,7 +138,6 @@ public class PhoneFormController implements Initializable {
             tms.add(new PhoneTM(p.getId(),p.getBrand(),p.getModule(),p.getRam(),p.getPrice()));
         }
         tblPhone.setItems(FXCollections.observableArrayList(tms));
-
 
 
     }

@@ -73,6 +73,7 @@ public class CustomerFormController implements Initializable {
     void deleted(ActionEvent event) {
         String cusId = txtCusId.getText();
         CustomerModule.deletedCustomer(cusId);
+        lodeAll();
 
     }
 
@@ -87,6 +88,7 @@ public class CustomerFormController implements Initializable {
 
         CustomerModule.saveCustomer(new Customer(cusId, name, address, nic, contact, salary));
         clear();
+        lodeAll();
 
     }
 
@@ -100,6 +102,7 @@ public class CustomerFormController implements Initializable {
         double salary = Double.parseDouble(txtSalary.getText());
         CustomerModule.updateCustomer(new Customer(cusId,name,address,nic,contact,salary));
         clear();
+        lodeAll();
     }
 
     @FXML
@@ -126,6 +129,11 @@ public class CustomerFormController implements Initializable {
         tblCustomer.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("contact"));
         tblCustomer.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("salary"));
 
+        lodeAll();
+
+    }
+
+    private void lodeAll() {
         ArrayList<Customer> allCustomer = CustomerModule.getAllCustomer();
         ArrayList<CustomerTM> tms = new ArrayList<>();
 
@@ -134,7 +142,6 @@ public class CustomerFormController implements Initializable {
         }
 
         tblCustomer.setItems(FXCollections.observableArrayList(tms));
-
     }
 
     public void clear() {
